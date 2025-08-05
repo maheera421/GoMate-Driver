@@ -1,13 +1,14 @@
+import { MaterialIcons } from "@expo/vector-icons";
 import * as ImagePicker from "expo-image-picker";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import {
-    Alert,
-    Image,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
+  Alert,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from "react-native";
 
 export default function CNICImages() {
@@ -15,23 +16,63 @@ export default function CNICImages() {
   const [frontImage, setFrontImage] = useState<string | null>(null);
   const [backImage, setBackImage] = useState<string | null>(null);
 
-  const pickImage = async (side: "front" | "back") => {
-    const permission = await ImagePicker.requestMediaLibraryPermissionsAsync();
-    if (!permission.granted) {
-      Alert.alert("Permission required", "Access to gallery is needed.");
-      return;
-    }
+  const handleSourceChoice = async (side: "front" | "back") => {
+    Alert.alert("Upload CNIC", "Choose an option", [
+      {
+        text: "Take Photo",
+        onPress: async () => {
+          const cameraPermission =
+            await ImagePicker.requestCameraPermissionsAsync();
+          if (!cameraPermission.granted) {
+            Alert.alert("Permission required", "Camera access is needed.");
+            return;
+          }
 
-    const result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      allowsEditing: true,
-      quality: 0.7,
-    });
+          const result = await ImagePicker.launchCameraAsync({
+            allowsEditing: true,
+            quality: 0.7,
+          });
 
-    if (!result.canceled) {
-      const uri = result.assets[0].uri;
-      side === "front" ? setFrontImage(uri) : setBackImage(uri);
-    }
+          if (!result.canceled) {
+            const uri = result.assets[0].uri;
+            side === "front" ? setFrontImage(uri) : setBackImage(uri);
+          }
+        },
+      },
+      {
+        text: "Choose from Gallery",
+        onPress: async () => {
+          const galleryPermission =
+            await ImagePicker.requestMediaLibraryPermissionsAsync();
+          if (!galleryPermission.granted) {
+            Alert.alert("Permission required", "Gallery access is needed.");
+            return;
+          }
+
+          const result = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.Images,
+            allowsEditing: true,
+            quality: 0.7,
+          });
+
+          if (!result.canceled) {
+            const uri = result.assets[0].uri;
+            side === "front" ? setFrontImage(uri) : setBackImage(uri);
+          }
+        },
+      },
+      {
+        text: "Cancel",
+        style: "cancel",
+      },
+    ]);
+  };
+
+  const handleRetakePrompt = (side: "front" | "back") => {
+    Alert.alert("Retake Image", "Do you want to replace this image?", [
+      { text: "Cancel", style: "cancel" },
+      { text: "Retake", onPress: () => handleSourceChoice(side) },
+    ]);
   };
 
   const handleNext = () => {
@@ -51,30 +92,39 @@ export default function CNICImages() {
 
       <Text style={styles.label}>CNIC Front</Text>
       {frontImage ? (
-        <Image source={{ uri: frontImage }} style={styles.image} />
+        <TouchableOpacity onPress={() => handleRetakePrompt("front")}>
+          <Image source={{ uri: frontImage }} style={styles.image} />
+        </TouchableOpacity>
       ) : (
         <TouchableOpacity
           style={styles.uploadBox}
-          onPress={() => pickImage("front")}
+          onPress={() => handleSourceChoice("front")}
         >
           <Text style={styles.uploadText}>Upload CNIC Front</Text>
+          <MaterialIcons name="add-photo-alternate" size={36} color="#888" />
         </TouchableOpacity>
       )}
 
       <Text style={styles.label}>CNIC Back</Text>
       {backImage ? (
-        <Image source={{ uri: backImage }} style={styles.image} />
+        <TouchableOpacity onPress={() => handleRetakePrompt("back")}>
+          <Image source={{ uri: backImage }} style={styles.image} />
+        </TouchableOpacity>
       ) : (
         <TouchableOpacity
           style={styles.uploadBox}
-          onPress={() => pickImage("back")}
+          onPress={() => handleSourceChoice("back")}
         >
           <Text style={styles.uploadText}>Upload CNIC Back</Text>
+          <MaterialIcons name="add-photo-alternate" size={36} color="#888" />
         </TouchableOpacity>
       )}
 
       <View style={styles.buttonRow}>
-        <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
+        <TouchableOpacity
+          style={styles.backButton}
+          onPress={() => router.back()}
+        >
           <Text style={styles.backText}>Back</Text>
         </TouchableOpacity>
 
@@ -121,6 +171,7 @@ const styles = StyleSheet.create({
   uploadText: {
     color: "#888",
     fontSize: 15,
+    marginTop: 8,
   },
   image: {
     width: "100%",

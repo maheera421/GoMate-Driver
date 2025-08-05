@@ -13,8 +13,8 @@ export default function RootLayout() {
       <Stack>
         <Stack.Screen name="index" options={{ title: "Register as Driver" }} />
         <Stack.Screen name="driver-basic-info" options={{ title: "Basic Info" }} />
-        <Stack.Screen name="cnic-images" options={{ title: "CNIC Images" }} />
-        <Stack.Screen name="selfie-with-id" options={{ title: "Selfie with ID" }} />
+        <Stack.Screen name="cnic-images" options={{ title: "CNIC Verification" }} />
+        <Stack.Screen name="selfie-with-id" options={{ title: "ID Confirmation" }} />
         <Stack.Screen name="driver's-license" options={{ title: "Driver's License" }} />
         <Stack.Screen name="vehicle-info" options={{ title: "Vehicle Info" }} />
       </Stack>

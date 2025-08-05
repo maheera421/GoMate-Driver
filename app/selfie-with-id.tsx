@@ -1,13 +1,14 @@
+import { MaterialIcons } from "@expo/vector-icons";
 import * as ImagePicker from "expo-image-picker";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import {
-    Alert,
-    Image,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
+  Alert,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from "react-native";
 
 export default function SelfieWithID() {
@@ -31,6 +32,17 @@ export default function SelfieWithID() {
     }
   };
 
+  const handleImagePress = () => {
+    Alert.alert(
+      "Retake Selfie",
+      "Do you want to retake your selfie?",
+      [
+        { text: "Cancel", style: "cancel" },
+        { text: "Retake", onPress: pickImage },
+      ]
+    );
+  };
+
   const handleNext = () => {
     if (!image) {
       Alert.alert("Upload Required", "Please take a selfie holding your ID.");
@@ -49,10 +61,13 @@ export default function SelfieWithID() {
       </Text>
 
       {image ? (
-        <Image source={{ uri: image }} style={styles.previewImage} />
+        <TouchableOpacity onPress={handleImagePress}>
+          <Image source={{ uri: image }} style={styles.previewImage} />
+        </TouchableOpacity>
       ) : (
         <TouchableOpacity style={styles.uploadBox} onPress={pickImage}>
           <Text style={styles.uploadText}>Tap to Take Selfie</Text>
+          <MaterialIcons name="add-a-photo" size={36} color="#888" />
         </TouchableOpacity>
       )}
 
@@ -98,12 +113,26 @@ const styles = StyleSheet.create({
   uploadText: {
     color: "#888",
     fontSize: 16,
+    marginBottom: 8,
   },
   previewImage: {
     width: "100%",
     height: 200,
     borderRadius: 12,
     resizeMode: "cover",
+  },
+  retakeButton: {
+    marginTop: 12,
+    alignSelf: "center",
+    backgroundColor: "#007BFF",
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 8,
+  },
+  retakeText: {
+    color: "#fff",
+    fontWeight: "bold",
+    fontSize: 16,
   },
   buttonRow: {
     flexDirection: "row",
