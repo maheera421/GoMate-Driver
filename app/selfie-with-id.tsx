@@ -71,15 +71,12 @@ export default function SelfieWithID() {
         </TouchableOpacity>
       )}
 
-      <View style={styles.buttonRow}>
-        <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
-          <Text style={styles.backText}>Back</Text>
-        </TouchableOpacity>
-
+      <View style={styles.singleButtonContainer}>
         <TouchableOpacity style={styles.nextButton} onPress={handleNext}>
           <Text style={styles.nextText}>Next</Text>
         </TouchableOpacity>
       </View>
+
     </View>
   );
 }
@@ -124,7 +121,7 @@ const styles = StyleSheet.create({
   retakeButton: {
     marginTop: 12,
     alignSelf: "center",
-    backgroundColor: "#007BFF",
+    backgroundColor: "#0286ff",
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 8,
@@ -139,24 +136,15 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     marginTop: 30,
   },
-  backButton: {
-    backgroundColor: "#ccc",
-    padding: 14,
-    borderRadius: 10,
-    flex: 1,
-    marginRight: 10,
+  singleButtonContainer: {
     alignItems: "center",
-  },
-  backText: {
-    fontWeight: "bold",
-    color: "#000",
+    marginTop: 30,
   },
   nextButton: {
-    backgroundColor: "#007BFF",
+    backgroundColor: "#0286ff",
     padding: 14,
-    borderRadius: 10,
-    flex: 1,
-    marginLeft: 10,
+    borderRadius: 20,
+    width: "40%", 
     alignItems: "center",
   },
   nextText: {

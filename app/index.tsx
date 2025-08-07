@@ -3,11 +3,11 @@ import { useRouter } from "expo-router";
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 const steps = [
-  { title: "Basic Info", route: "/driver-basic-info", icon: "person" },
-  { title: "CNIC", route: "/cnic-images", icon: "credit-card" },
-  { title: "Selfie with ID", route: "/selfie-with-id", icon: "photo-camera" },
-  { title: "Driver’s License", route: "/driver's-license", icon: "badge" },
-  { title: "Vehicle Info", route: "/vehicle-info", icon: "directions-car" },
+  { title: "Driver Information", icon: "person" },
+  { title: "CNIC", icon: "credit-card" },
+  { title: "Selfie with ID", icon: "photo-camera" },
+  { title: "Driver’s License", icon: "badge" },
+  { title: "Vehicle Information", icon: "directions-car" },
 ];
 
 export default function DriverRegistration() {
@@ -19,14 +19,10 @@ export default function DriverRegistration() {
 
       <View style={styles.stepList}>
         {steps.map((step, index) => (
-          <TouchableOpacity
-            key={index}
-            style={styles.stepItem}
-            onPress={() => router.push(step.route as any)}
-          >
+          <View key={index} style={styles.stepItem}>
             <MaterialIcons name={step.icon as any} size={24} color="#000" />
             <Text style={styles.stepText}>{step.title}</Text>
-          </TouchableOpacity>
+          </View>
         ))}
       </View>
 
@@ -44,15 +40,15 @@ export default function DriverRegistration() {
 
 const styles = StyleSheet.create({
   container: {
-  padding: 24,
-  paddingTop: 60,
-  flexGrow: 1,
-  backgroundColor: "#fff",
-},
-buttonWrapper: {
-  marginTop: 32,
-  marginBottom: 40,  // ← pushes button up from bottom
-},
+    padding: 24,
+    paddingTop: 60,
+    flexGrow: 1,
+    backgroundColor: "#fff",
+  },
+  buttonWrapper: {
+    marginTop: 32,
+    marginBottom: 40,
+  },
   header: {
     fontSize: 32,
     fontWeight: "bold",
@@ -75,9 +71,9 @@ buttonWrapper: {
   },
   continueButton: {
     marginTop: 29,
-    backgroundColor: "#007BFF",
+    backgroundColor: "#0286ff",
     paddingVertical: 16,
-    borderRadius: 12,
+    borderRadius: 20,
     alignItems: "center",
   },
   continueText: {

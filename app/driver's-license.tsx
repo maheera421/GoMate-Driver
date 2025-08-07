@@ -124,13 +124,11 @@ export default function DriverLicense() {
       )}
 
       <View style={styles.buttonRow}>
-        <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
-          <Text style={styles.backText}>Back</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.nextButton} onPress={handleNext}>
+        <TouchableOpacity style={styles.nextButtonSingle} onPress={handleNext}>
           <Text style={styles.nextText}>Next</Text>
         </TouchableOpacity>
       </View>
+
     </View>
   );
 }
@@ -178,30 +176,16 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     resizeMode: "cover",
   },
+  nextButtonSingle: {
+    backgroundColor: "#0286ff",
+    padding: 14,
+    borderRadius: 20,
+    alignItems: "center",
+    alignSelf: "center",
+    width: "40%",
+  },
   buttonRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
     marginTop: 30,
-  },
-  backButton: {
-    backgroundColor: "#ccc",
-    padding: 14,
-    borderRadius: 10,
-    flex: 1,
-    marginRight: 10,
-    alignItems: "center",
-  },
-  backText: {
-    fontWeight: "bold",
-    color: "#000",
-  },
-  nextButton: {
-    backgroundColor: "#007BFF",
-    padding: 14,
-    borderRadius: 10,
-    flex: 1,
-    marginLeft: 10,
-    alignItems: "center",
   },
   nextText: {
     color: "#fff",
