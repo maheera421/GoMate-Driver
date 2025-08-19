@@ -1,50 +1,40 @@
-# Welcome to your Expo app 👋
+# GoMate-Driver
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+**GoMate-Driver** is the official driver-side React Native application built with Expo and Expo Router. Drivers can register through a step-by-step flow, upload required documents (CNIC, Selfie with ID, License), and submit vehicle information for admin approval.
 
-## Get started
+---
 
-1. Install dependencies
+##  Features
 
+- Multi-step registration flow:
+  - Driver personal info
+  - CNIC (front & back)
+  - Selfie holding ID
+  - Driver’s license (front & back)
+  - Vehicle details & documents
+- Camera and gallery integration for uploading images
+- Custom form validations (e.g., vehicle registration length, date formats)
+- Tailored UI loops with retake and delete options for images
+- Centralized back navigation with friendly alerts and popups
+
+---
+
+##  Setup & Getting Started
+
+1. Clone the repo:
    ```bash
-   npm install
-   ```
+   git clone https://github.com/maheera421/GoMate-Driver.git
+   cd GoMate-Driver
 
-2. Start the app
+2. install:
+   ```bash
+    npm install
 
+4. run:
    ```bash
    npx expo start
-   ```
 
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+5. open_on:
+    - Android emulator
+    - iOS simulator
+    - Expo Go mobile app
